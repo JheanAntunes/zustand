@@ -12,7 +12,7 @@ type Actions = {
 
 type UsePersonStore = State & Actions
 
-export const usePersonStore = create<UsePersonStore>((set) => ({
+export const usePersonStore = create<UsePersonStore>()((set) => ({
   firstName: '',
   lastName: '',
   updatingFirstName: (newFirstName) => set(() => ({ firstName: newFirstName })),
