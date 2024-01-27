@@ -13,9 +13,10 @@ type ButtonDescrementCounterProps = {
 export const ButtonIncrementCounter = ({
   qtd
 }: ButtonIncrementCounterProps) => {
-  const incrementCounter = useCounterStore(
-    (stateCounter) => stateCounter.setIncrementCount
-  )
+  // const incrementCounter = useCounterStore(
+  //   (stateCounter) => stateCounter.setIncrementCount
+  // )
+  const incrementCounter = useCounterStore.use.setIncrementCount()
 
   console.log('Button render Increment ')
 
@@ -29,9 +30,11 @@ export const ButtonIncrementCounter = ({
 export const ButtonDescrementCounter = ({
   qtd
 }: ButtonDescrementCounterProps) => {
-  const descrementCounter = useCounterStore(
-    (stateCounter) => stateCounter.setDescrementCount
-  )
+  // const descrementCounter = useCounterStore(
+  //   (stateCounter) => stateCounter.setDescrementCount
+  // )
+
+  const descrementCounter = useCounterStore.use.setDescrementCount()
 
   console.log('Button render Descrement ')
 
@@ -43,9 +46,7 @@ export const ButtonDescrementCounter = ({
 }
 
 export const ButtonResetCounter = () => {
-  const resetCounter = useCounterStore(
-    (stateCounter) => stateCounter.setResetCount
-  )
+  const resetCounter = useCounterStore.use.setResetCount
 
   console.log('Button Reset ')
 
