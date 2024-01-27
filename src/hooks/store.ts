@@ -1,4 +1,5 @@
-import { create } from 'zustand'
+import { createSelectors } from '@/utils/createSelectors'
+import { createStore } from 'zustand'
 
 type CounterStore = {
   count: number
@@ -7,7 +8,7 @@ type CounterStore = {
   setDescrementCount: (qtd?: number) => void
 }
 
-export const useCounterStore = create<CounterStore>((set) => ({
+const CounterStore = createStore<CounterStore>((set) => ({
   count: 0,
   setIncrementCount: (qtd) =>
     set((state) => ({ count: qtd ?? state.count + 1 })),
@@ -18,3 +19,5 @@ export const useCounterStore = create<CounterStore>((set) => ({
     set(() => ({ count: 0 }))
   }
 }))
+
+export const useCounterStore = createSelectors(CounterStore)
