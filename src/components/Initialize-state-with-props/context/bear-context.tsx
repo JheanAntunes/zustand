@@ -1,16 +1,30 @@
 'use client'
 import { createContext, useContext, useRef } from 'react'
 import { useStore } from 'zustand'
-import { BearState, BearStore, createBearStore } from '../store/store-bear'
+import {
+  BearProps,
+  BearState,
+  BearStore,
+  createBearStore
+} from '../store/store-bear'
 
 export const BearContext = createContext<BearStore | null>(null)
 
-type BearContextProviderProps = React.PropsWithChildren
+type BearContextProviderProps = React.PropsWithChildren<BearProps>
 
-export const BearContextProvider = ({ children }: BearContextProviderProps) => {
-  const store = useRef(createBearStore()).current
-
-  return <BearContext.Provider value={store}>{children}</BearContext.Provider>
+export const BearContextProvider = ({
+  children,
+  ...props
+}: BearContextProviderProps) => {
+  const store = useRef<BearStore>()
+  if (!store.current) {
+    store.current = createBearStore(props)
+  }
+  return (
+    <BearContext.Provider value={store.current}>
+      {children}
+    </BearContext.Provider>
+  )
 }
 
 // export const useBearContext = () => {
