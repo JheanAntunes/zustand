@@ -1,6 +1,6 @@
 import { createStore } from 'zustand'
 
-interface BearProps {
+export interface BearProps {
   bears: number
 }
 
