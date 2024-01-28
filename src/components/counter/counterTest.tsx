@@ -1,5 +1,4 @@
-import { useCounterStore } from "@/store/user-counter-store"
-
+import { useCounterStore } from '@/store/user-counter-store'
 
 export function Counter() {
   const { count, inc } = useCounterStore()

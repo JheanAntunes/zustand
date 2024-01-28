@@ -2,14 +2,13 @@ import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Counter } from './counterTest'
 
-
 describe('Counter', () => {
   test('should render with initial state of 1', async () => {
     renderCounter()
 
     expect(await screen.findByText(/^1$/)).toBeInTheDocument()
     expect(
-      await screen.findByRole('button', { name: /one up/i }),
+      await screen.findByRole('button', { name: /one up/i })
     ).toBeInTheDocument()
   })
 
