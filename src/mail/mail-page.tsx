@@ -1,5 +1,4 @@
 import { cookies } from 'next/headers'
-import Image from 'next/image'
 
 import { Mail } from '@/mail/components/mail'
 import { accounts, mails } from '@/mail/data'
@@ -14,7 +13,7 @@ export default function MailPage() {
   return (
     <>
       <div className="md:hidden">
-        <Image
+        {/* <Image
           src="/examples/mail-dark.png"
           width={1280}
           height={727}
@@ -27,7 +26,7 @@ export default function MailPage() {
           height={727}
           alt="Mail"
           className="block dark:hidden"
-        />
+        /> */}
       </div>
       <div className="hidden flex-col md:flex">
         <Mail
