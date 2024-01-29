@@ -28,8 +28,8 @@ import {
   Trash2,
   Users2
 } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import * as React from 'react'
-import { ImperativePanelHandle } from 'react-resizable-panels'
 import { useMailStore } from '../use-mail'
 
 interface MailProps {
@@ -54,7 +54,10 @@ export function Mail({
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed)
   // const [mail] = useMail()
   const selected = useMailStore((state) => state.selected)
-  const leftPanelRef = React.useRef<ImperativePanelHandle>(null)
+  const trash = useMailStore((state) => state.trash)
+  const pathname = usePathname()
+  const isActiveLink = (href: string) => pathname === href
+
   return (
     <TooltipProvider delayDuration={0}>
       <ResizablePanelGroup
@@ -77,11 +80,8 @@ export function Mail({
             document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(true)}`
           }}
           onExpand={() => {
-            const panel = leftPanelRef.current
-            if (!panel?.isCollapsed()) {
-              setIsCollapsed(false)
-              document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(false)}`
-            }
+            setIsCollapsed(false)
+            document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(false)}`
           }}
           className={cn(
             isCollapsed &&
@@ -104,37 +104,43 @@ export function Mail({
                 title: 'Inbox',
                 label: '128',
                 icon: Inbox,
-                variant: 'default'
+                variant: isActiveLink('/') ? 'default' : 'ghost',
+                href: '/'
               },
               {
                 title: 'Drafts',
                 label: '9',
                 icon: File,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               },
               {
                 title: 'Sent',
                 label: '',
                 icon: Send,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               },
               {
                 title: 'Junk',
                 label: '23',
                 icon: ArchiveX,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               },
               {
                 title: 'Trash',
-                label: '',
+                label: `${trash.length}`,
                 icon: Trash2,
-                variant: 'ghost'
+                variant: isActiveLink('/trash') ? 'default' : 'ghost',
+                href: '/trash'
               },
               {
                 title: 'Archive',
                 label: '',
                 icon: Archive,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               }
             ]}
           />
@@ -146,31 +152,36 @@ export function Mail({
                 title: 'Social',
                 label: '972',
                 icon: Users2,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               },
               {
                 title: 'Updates',
                 label: '342',
                 icon: AlertCircle,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               },
               {
                 title: 'Forums',
                 label: '128',
                 icon: MessagesSquare,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               },
               {
                 title: 'Shopping',
                 label: '8',
                 icon: ShoppingCart,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               },
               {
                 title: 'Promotions',
                 label: '21',
                 icon: Archive,
-                variant: 'ghost'
+                variant: isActiveLink('#') ? 'default' : 'ghost',
+                href: '#'
               }
             ]}
           />
