@@ -37,6 +37,7 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { Mail } from '@/mail/data'
+import { useMailStore } from '../use-mail'
 
 interface MailDisplayProps {
   mail: Mail | null
@@ -44,7 +45,11 @@ interface MailDisplayProps {
 
 export function MailDisplay({ mail }: MailDisplayProps) {
   const today = new Date()
-
+  const deleteMail = useMailStore((state) => state.deleteMail)
+  const mailTrash = useMailStore((state) => state.trash)
+  const isFindMailTrash = () => {
+    return mailTrash.find((trash) => trash.id === mail?.id) ? true : false
+  }
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center p-2">
@@ -69,7 +74,16 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
+              <Button
+                variant="ghost"
+                size="icon"
+                disabled={!mail || isFindMailTrash()}
+                onClick={() => {
+                  if (mail && !isFindMailTrash()) {
+                    deleteMail(mail.id)
+                  }
+                }}
+              >
                 <Trash2 className="h-4 w-4" />
                 <span className="sr-only">Move to trash</span>
               </Button>
