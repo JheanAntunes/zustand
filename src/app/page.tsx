@@ -1,9 +1,9 @@
-import InitializeStateWithProps from '@/components/Initialize-state-with-props'
+import MailPage from '@/mail/mail-page'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <InitializeStateWithProps />
+    <main className="">
+      <MailPage />
     </main>
   )
 }
