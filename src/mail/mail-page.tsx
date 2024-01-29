@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers'
 
-import { Mail } from '@/mail/components/mail'
-import { accounts, mails } from '@/mail/data'
+import WrapperDataMail from './components/wrapper-data-mail'
 
 export default function MailPage() {
   const layout = cookies().get('react-resizable-panels:layout')
@@ -29,12 +28,9 @@ export default function MailPage() {
         /> */}
       </div>
       <div className="hidden flex-col md:flex">
-        <Mail
-          accounts={accounts}
-          mails={mails}
+        <WrapperDataMail
           defaultLayout={defaultLayout}
           defaultCollapsed={defaultCollapsed}
-          navCollapsedSize={4}
         />
       </div>
     </>
