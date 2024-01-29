@@ -1,6 +1,6 @@
 import { createSelectors } from '@/utils/createSelectors'
-import { createStore } from 'zustand'
 
+import { createStore } from 'zustand'
 type CounterStore = {
   count: number
   setIncrementCount: (qtd?: number) => void

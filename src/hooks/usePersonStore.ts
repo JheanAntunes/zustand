@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 
 type State = {
   firstName: string
@@ -12,9 +13,12 @@ type Actions = {
 
 type UsePersonStore = State & Actions
 
-export const usePersonStore = create<UsePersonStore>()((set) => ({
-  firstName: '',
-  lastName: '',
-  updatingFirstName: (newFirstName) => set(() => ({ firstName: newFirstName })),
-  updatingLastName: (newLastName) => set(() => ({ lastName: newLastName }))
-}))
+export const usePersonStore = create<UsePersonStore>()(
+  devtools((set) => ({
+    firstName: '',
+    lastName: '',
+    updatingFirstName: (newFirstName) =>
+      set(() => ({ firstName: newFirstName })),
+    updatingLastName: (newLastName) => set(() => ({ lastName: newLastName }))
+  }))
+)
