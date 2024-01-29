@@ -73,11 +73,8 @@ export function Mail({
           minSize={15}
           maxSize={20}
           onCollapse={() => {
-            const panel = leftPanelRef.current
-            if (panel?.isCollapsed()) {
-              setIsCollapsed(true)
-              document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(true)}`
-            }
+            setIsCollapsed(true)
+            document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(true)}`
           }}
           onExpand={() => {
             const panel = leftPanelRef.current
