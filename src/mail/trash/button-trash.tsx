@@ -8,15 +8,15 @@ import {
 import { Mail } from '@/mail/data'
 import { Trash2 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { useMailStore } from '../use-mail'
+import { useStoreMail } from '../store/use-store-mails'
 
 interface ButtonTrashProps {
   mail: Mail | null
 }
 
 const ButtonTrash = ({ mail }: ButtonTrashProps) => {
-  const mailTrash = useMailStore((state) => state.trash)
-  const setDeleteMail = useMailStore((state) => state.deleteMail)
+  const mailTrash = useStoreMail((state) => state.trash)
+  const setDeleteMail = useStoreMail((state) => state.deleteMail)
   const pathname = usePathname()
   const type = pathname === '/archives' ? 'archives' : 'mail'
   const isFindMailTrash = () => {

@@ -1,6 +1,6 @@
 'use client'
 import { accounts } from '@/mail/data'
-import { useMailStore } from '../use-mail'
+import { useStoreMail } from '../store/use-store-mails'
 import { Mail } from './mail'
 
 interface WrapperDataMail {
@@ -12,7 +12,7 @@ const WrapperDataMail = ({
   defaultLayout,
   defaultCollapsed
 }: WrapperDataMail) => {
-  const mails = useMailStore((state) => state.mails)
+  const mails = useStoreMail((state) => state.mails)
   return (
     <>
       <Mail

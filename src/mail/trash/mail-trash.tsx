@@ -1,14 +1,14 @@
 'use client'
 import { Mail } from '../components/mail'
 import { accounts } from '../data'
-import { useMailStore } from '../use-mail'
+import { useStoreMail } from '../store/use-store-mails'
 
 interface MailTrash {
   defaultLayout: number[] | undefined
   defaultCollapsed?: boolean
 }
 const MailTrash = ({ defaultLayout, defaultCollapsed }: MailTrash) => {
-  const mailTrash = useMailStore((state) => state.trash)
+  const mailTrash = useStoreMail((state) => state.trash)
   return (
     <div>
       <Mail

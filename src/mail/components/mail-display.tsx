@@ -3,14 +3,12 @@ import { addHours } from 'date-fns/addHours'
 import { format } from 'date-fns/format'
 import { nextSaturday } from 'date-fns/nextSaturday'
 import {
-  Archive,
   ArchiveX,
   Clock,
   Forward,
   MoreVertical,
   Reply,
-  ReplyAll,
-  Trash2
+  ReplyAll
 } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -37,7 +35,8 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { Mail } from '@/mail/data'
-import { useMailStore } from '../use-mail'
+import ButtonArchive from '../archives/button-archive'
+import ButtonTrash from '../trash/button-trash'
 
 interface MailDisplayProps {
   mail: Mail | null
@@ -45,24 +44,12 @@ interface MailDisplayProps {
 
 export function MailDisplay({ mail }: MailDisplayProps) {
   const today = new Date()
-  const deleteMail = useMailStore((state) => state.deleteMail)
-  const mailTrash = useMailStore((state) => state.trash)
-  const isFindMailTrash = () => {
-    return mailTrash.find((trash) => trash.id === mail?.id) ? true : false
-  }
+
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center p-2">
         <div className="flex items-center gap-2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
-                <Archive className="h-4 w-4" />
-                <span className="sr-only">Archive</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Archive</TooltipContent>
-          </Tooltip>
+          <ButtonArchive mail={mail} />
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon" disabled={!mail}>
@@ -72,24 +59,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
             </TooltipTrigger>
             <TooltipContent>Move to junk</TooltipContent>
           </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                disabled={!mail || isFindMailTrash()}
-                onClick={() => {
-                  if (mail && !isFindMailTrash()) {
-                    deleteMail(mail.id)
-                  }
-                }}
-              >
-                <Trash2 className="h-4 w-4" />
-                <span className="sr-only">Move to trash</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Move to trash</TooltipContent>
-          </Tooltip>
+          <ButtonTrash mail={mail} />
           <Separator orientation="vertical" className="mx-1 h-6" />
           <Tooltip>
             <Popover>

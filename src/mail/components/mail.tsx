@@ -30,7 +30,7 @@ import {
 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
-import { useMailStore } from '../use-mail'
+import { useStoreMail } from '../store/use-store-mails'
 
 interface MailProps {
   accounts: {
@@ -53,8 +53,12 @@ export function Mail({
 }: MailProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed)
   // const [mail] = useMail()
-  const selected = useMailStore((state) => state.selected)
-  const trash = useMailStore((state) => state.trash)
+  const selected = useStoreMail((state) => state.selected)
+  const trash = useStoreMail((state) => state.trash)
+  const archives = useStoreMail((state) => state.archives)
+  console.log('Selecionado: ', selected)
+  console.log('State trash: ', trash)
+  console.log('State archives: ', archives)
   const pathname = usePathname()
   const isActiveLink = (href: string) => pathname === href
 
@@ -137,10 +141,10 @@ export function Mail({
               },
               {
                 title: 'Archive',
-                label: '',
+                label: `${archives.length}`,
                 icon: Archive,
-                variant: isActiveLink('#') ? 'default' : 'ghost',
-                href: '#'
+                variant: isActiveLink('/archives') ? 'default' : 'ghost',
+                href: '/archives'
               }
             ]}
           />

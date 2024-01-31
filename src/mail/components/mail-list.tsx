@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/lib/utils'
 import { Mail } from '@/mail/data'
-import { useMailStore } from '../use-mail'
+import { useStoreMail } from '../store/use-store-mails'
 // import { useMail, useMailStore } from '@/mail/use-mail'
 
 interface MailListProps {
@@ -15,8 +15,8 @@ interface MailListProps {
 
 export function MailList({ items }: MailListProps) {
   // const [mail, setMail] = useMail()
-  const selected = useMailStore((state) => state.selected)
-  const setSelected = useMailStore((state) => state.setSelected)
+  const selected = useStoreMail((state) => state.selected)
+  const setSelected = useStoreMail((state) => state.setSelected)
 
   return (
     <ScrollArea className="h-screen">
