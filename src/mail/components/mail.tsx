@@ -56,9 +56,6 @@ export function Mail({
   const selected = useStoreMail((state) => state.selected)
   const trash = useStoreMail((state) => state.trash)
   const archives = useStoreMail((state) => state.archives)
-  console.log('Selecionado: ', selected)
-  console.log('State trash: ', trash)
-  console.log('State archives: ', archives)
   const pathname = usePathname()
   const isActiveLink = (href: string) => pathname === href
 
