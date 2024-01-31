@@ -12,8 +12,8 @@ type Config = {
 
 type Actions = {
   setSelected: (selectedId: string) => void
-  deleteMail: (selectedId: string) => void
-  setArchive: (selectedId: string) => void
+  deleteMail: (type: 'mail' | 'archives', selectedId: string) => void
+  setArchive: (type: 'mail' | 'trash', selectedId: string) => void
 }
 
 const configCreator: StateCreator<Config & Actions> = (set) => ({
@@ -24,23 +24,49 @@ const configCreator: StateCreator<Config & Actions> = (set) => ({
   setSelected: (selectedId: string) => {
     set(() => ({ selected: selectedId }))
   },
-  deleteMail: (selectedId: string) => {
-    set((state) => ({
-      trash: [
-        ...state.trash,
-        state.mails.find((mail) => mail.id === selectedId)!
-      ],
-      mails: state.mails.filter((mail) => mail.id !== selectedId)
-    }))
+  deleteMail: (type, selectedId: string) => {
+    switch (type) {
+      case 'mail':
+        set((state) => ({
+          trash: [
+            ...state.trash,
+            state.mails.find((mail) => mail.id === selectedId)!
+          ],
+          mails: state.mails.filter((mail) => mail.id !== selectedId)
+        }))
+        break
+      case 'archives':
+        set((state) => ({
+          trash: [
+            ...state.trash,
+            state.archives.find((mail) => mail.id === selectedId)!
+          ],
+          archives: state.archives.filter((mail) => mail.id !== selectedId)
+        }))
+        break
+    }
   },
-  setArchive: (selectedId: string) => {
-    set((state) => ({
-      archives: [
-        ...state.archives,
-        state.mails.find((mail) => mail.id === selectedId)!
-      ],
-      mails: state.mails.filter((mail) => mail.id !== selectedId)
-    }))
+  setArchive: (type, selectedId: string) => {
+    switch (type) {
+      case 'mail':
+        set((state) => ({
+          archives: [
+            ...state.archives,
+            state.mails.find((mail) => mail.id === selectedId)!
+          ],
+          mails: state.mails.filter((mail) => mail.id !== selectedId)
+        }))
+        break
+      case 'trash':
+        set((state) => ({
+          archives: [
+            ...state.archives,
+            state.trash.find((mail) => mail.id === selectedId)!
+          ],
+          trash: state.trash.filter((mail) => mail.id !== selectedId)
+        }))
+        break
+    }
   }
 })
 
