@@ -6,6 +6,12 @@ type Props = {
     [key: string]: string | string[] | undefined
   }
 }
+
+export const metadata = {
+  title: 'Trash',
+  description: 'Seus e-mails que está na lixeira'
+}
+
 const PageTrash = ({ searchParams }: Props) => {
   const layout = cookies().get('react-resizable-panels:layout')
   const collapsed = cookies().get('react-resizable-panels:collapsed')

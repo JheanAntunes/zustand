@@ -7,6 +7,12 @@ type Props = {
     [key: string]: string | string[] | undefined
   }
 }
+
+export const metadata = {
+  title: 'Archives',
+  description: 'Seus e-mails que estão arquivados.'
+}
+
 const PageArchives = ({ searchParams }: Props) => {
   const layout = cookies().get('react-resizable-panels:layout')
   const collapsed = cookies().get('react-resizable-panels:collapsed')
