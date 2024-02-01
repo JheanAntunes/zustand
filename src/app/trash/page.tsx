@@ -1,18 +1,25 @@
 import MailTrash from '@/mail/trash/mail-trash'
 import { cookies } from 'next/headers'
-
-const PageTrash = () => {
+type Props = {
+  searchParams: {
+    search?: string
+    [key: string]: string | string[] | undefined
+  }
+}
+const PageTrash = ({ searchParams }: Props) => {
   const layout = cookies().get('react-resizable-panels:layout')
   const collapsed = cookies().get('react-resizable-panels:collapsed')
 
   const defaultLayout = layout ? JSON.parse(layout.value) : undefined
   const defaultCollapsed = collapsed ? JSON.parse(collapsed.value) : undefined
 
+  const { search } = searchParams
   return (
     <main>
       <MailTrash
         defaultLayout={defaultLayout}
         defaultCollapsed={defaultCollapsed}
+        search={search}
       />
     </main>
   )

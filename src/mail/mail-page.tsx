@@ -1,8 +1,10 @@
 import { cookies } from 'next/headers'
 
 import WrapperDataMail from './components/wrapper-data-mail'
-
-export default function MailPage() {
+interface Props {
+  search?: string
+}
+export default function MailPage({ search }: Props) {
   const layout = cookies().get('react-resizable-panels:layout')
   const collapsed = cookies().get('react-resizable-panels:collapsed')
 
@@ -31,6 +33,7 @@ export default function MailPage() {
         <WrapperDataMail
           defaultLayout={defaultLayout}
           defaultCollapsed={defaultCollapsed}
+          search={search}
         />
       </div>
     </>

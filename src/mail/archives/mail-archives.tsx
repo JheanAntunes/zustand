@@ -1,4 +1,5 @@
 'use client'
+import { searchFilter } from '@/utils/search-filter'
 import { Mail } from '../components/mail'
 import { accounts } from '../data'
 import { useStoreMail } from '../store/use-store-mails'
@@ -6,17 +7,19 @@ import { useStoreMail } from '../store/use-store-mails'
 interface MailArchivesProps {
   defaultLayout: number[] | undefined
   defaultCollapsed?: boolean
+  search?: string
 }
 const MailArchives = ({
   defaultLayout,
-  defaultCollapsed
+  defaultCollapsed,
+  search
 }: MailArchivesProps) => {
-  const mailArchives = useStoreMail((state) => state.archives)
+  const mailsArchives = useStoreMail((state) => state.archives)
   return (
     <div>
       <Mail
         accounts={accounts}
-        mails={mailArchives}
+        mails={searchFilter(mailsArchives, search) ?? mailsArchives}
         navCollapsedSize={4}
         defaultLayout={defaultLayout}
         defaultCollapsed={defaultCollapsed}

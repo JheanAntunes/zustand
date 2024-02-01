@@ -1,9 +1,16 @@
 import MailPage from '@/mail/mail-page'
 
-export default function Home() {
+interface Props {
+  searchParams: {
+    search?: string
+    [key: string]: string | string[] | undefined
+  }
+}
+export default function Home({ searchParams }: Props) {
+  const { search } = searchParams
   return (
     <main className="">
-      <MailPage />
+      <MailPage search={search} />
     </main>
   )
 }

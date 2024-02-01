@@ -1,5 +1,4 @@
 'use client'
-import { Input } from '@/components/ui/input'
 import {
   ResizableHandle,
   ResizablePanel,
@@ -22,7 +21,6 @@ import {
   File,
   Inbox,
   MessagesSquare,
-  Search,
   Send,
   ShoppingCart,
   Trash2,
@@ -31,6 +29,7 @@ import {
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { useStoreMail } from '../store/use-store-mails'
+import Search from './search'
 
 interface MailProps {
   accounts: {
@@ -208,14 +207,7 @@ export function Mail({
               </TabsList>
             </div>
             <Separator />
-            <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <form>
-                <div className="relative">
-                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Search" className="pl-8" />
-                </div>
-              </form>
-            </div>
+            <Search />
             <TabsContent value="all" className="m-0">
               <MailList items={mails} />
             </TabsContent>
