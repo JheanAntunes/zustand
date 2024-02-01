@@ -1,3 +1,38 @@
+# Introdução :bear:
+Por que você estudou zustand ?
+Porque é uma biblioteca que fornece o gerenciamento de estado global, eu também em breve vou estudar outras bibliotecas que gerencia o estado globalmente :snail:
+## O que praticou :polar_bear:
+- criação de loja
+- Atualização da loja
+- Zustand com Components server
+  - server actions
+- Pattern
+  - Slices pattern
+- Praticas recomendas
+  - Loja única
+  - Utilizar a função set ou setState para atualizar a loja
+- Objeto aninhados
+  - Com immer
+- Criação de methods para atualizar a loja
+- Seletores de geração automática
+  - CreateSelectors
+- Redux-like pattern
+- ContextApi com zustand
+
+# Projeto com Zustand :bear:
+## Descrição :dove:
+projeto que mostra os e-mails e você pode pesquisar pelo email, enviar para lixeira, arquivar.
+## Projeto  :bear:
+eu copiei o exemplo do component e-mails do shadcn-ui que gerencia o estado global com jotai e refatorei para zustand e criei novas funções que são
+- Deletar e-mail
+- Arquivar e-mail
+- Pesquisar pelo e-mail ou nome
+
+para construir essas novas funções, utilizei hooks personalizados, reutlização, debounce, manipulação de url, hooks do nextjs, zod, react-hook-form e mais...
+## Contruibuição :paw_prints:
+Shadcn-ui components e outras tecnologias incríveis que usei para fazer esse projeto.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
