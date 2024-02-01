@@ -29,7 +29,7 @@ const Search = () => {
                 </FormLabel>
                 <FormControl>
                   <search className="relative">
-                    <IconSearch className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <IconSearch className="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
                       placeholder="Nome"
                       type="text"
