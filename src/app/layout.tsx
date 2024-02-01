@@ -6,9 +6,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    template:"E-mails",
-    default:'E-mails',
-  }
+    template: 'E-mails',
+    default: 'E-mails'
+  },
   description: 'você pode gerenciar seus emails'
 }
 
