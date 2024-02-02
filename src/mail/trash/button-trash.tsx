@@ -5,6 +5,7 @@ import {
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+import { useToast } from '@/components/ui/use-toast'
 import { Mail } from '@/mail/data'
 import { Trash2 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
@@ -22,7 +23,7 @@ const ButtonTrash = ({ mail }: ButtonTrashProps) => {
   const isFindMailTrash = () => {
     return mailTrash.find((trash) => trash.id === mail?.id) ? true : false
   }
-
+  const { toast } = useToast()
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -32,6 +33,11 @@ const ButtonTrash = ({ mail }: ButtonTrashProps) => {
           disabled={!mail || isFindMailTrash()}
           onClick={() => {
             if (mail && !isFindMailTrash()) {
+              toast({
+                title: 'e-mail enviado para lixeira',
+                description:
+                  'você pode navegar para página de lixeira e encontrar esse e-mail.'
+              })
               setDeleteMail(type, mail.id)
             }
           }}

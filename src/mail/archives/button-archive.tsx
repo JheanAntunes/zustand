@@ -5,6 +5,7 @@ import {
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+import { useToast } from '@/components/ui/use-toast'
 import { Mail } from '@/mail/data'
 import { Archive } from 'lucide-react'
 import { usePathname } from 'next/navigation'
@@ -24,6 +25,7 @@ const ButtonArchive = ({ mail }: ButtonArchiveProps) => {
       ? true
       : false
   }
+  const { toast } = useToast()
 
   return (
     <Tooltip>
@@ -34,6 +36,11 @@ const ButtonArchive = ({ mail }: ButtonArchiveProps) => {
           disabled={!mail || isFindMailArchives()}
           onClick={() => {
             if (mail && !isFindMailArchives()) {
+              toast({
+                title: 'e-mail arquivado',
+                description:
+                  'você pode navegar para página de arquivados e encontrar esse e-mail.'
+              })
               setArchiveMail(type, mail.id)
             }
           }}
