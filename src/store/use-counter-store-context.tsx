@@ -1,14 +1,9 @@
-import {
-  createContext,
-  useContext,
-  useRef,
-  type PropsWithChildren
-} from 'react'
-import { createStore, type StoreApi } from 'zustand'
+import { PropsWithChildren, createContext, useContext, useRef } from 'react'
+import { StoreApi, createStore } from 'zustand'
 import { shallow } from 'zustand/shallow'
 import { useStoreWithEqualityFn } from 'zustand/traditional'
 
-import { counterStoreCreator, type CounterStore } from './counter-store-creator'
+import { CounterStore, counterStoreCreator } from './counter-store-creator'
 
 export const createCounterStore = () => {
   return createStore<CounterStore>(counterStoreCreator)
