@@ -1,5 +1,5 @@
 import { create } from 'zustand'
 
-import { type CounterStore, counterStoreCreator } from './counter-store-creator'
+import { counterStoreCreator, type CounterStore } from './counter-store-creator'
 
 export const useCounterStore = create<CounterStore>()(counterStoreCreator)
